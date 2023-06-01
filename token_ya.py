@@ -43,6 +43,8 @@ def get_token():
             if url_fragment:
                 token = url_fragment.split('&')[0].split('=')[1]
 
+    driver.close()
+    
     nums = 0
 
     for i in os.listdir():
