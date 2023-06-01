@@ -29,16 +29,7 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-Прежде чем запускать нужно получить Токен - [Как получить токен](https://yandex-music.readthedocs.io/en/latest/token.html)
-
-После получения токена нужно создать файл settings.ini и прописать в нем токен:
-
-```ini
-[Yandex]
-TOKEN = Ваш токен
-```
-
-Дальше запустить скрипт
+Дальше запустить скрипт и проходим авторизацию(авторизация нужна для получения токена, проходит один раз)
 
 ```cmd
 python main.py

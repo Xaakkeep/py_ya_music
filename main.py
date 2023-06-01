@@ -4,12 +4,16 @@ import time
 import configparser as cf
 import os
 from art import tprint
+import token_ya as ya
 
 tprint("Power by dev Grib.pw")
 print("#################################")
 print("Скрипт скачивания с Яндекс Музыки")
 print("#################################\n")
 start_prog = time.time()
+
+print("Создание файла конфигурации\n")
+ya.get_token()
 
 config = cf.ConfigParser()
 config.read("settings.ini") # Файл конфигурации где лежит ваш токен
