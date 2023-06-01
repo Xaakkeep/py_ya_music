@@ -3,15 +3,20 @@ import random as rd
 import time
 import configparser as cf
 import os
+from art import tprint
 
+tprint("Power by dev Grib.pw")
+print("#################################")
+print("Скрипт скачивания с Яндекс Музыки")
+print("#################################\n")
 start_prog = time.time()
 
 config = cf.ConfigParser()
 config.read("settings.ini") # Файл конфигурации где лежит ваш токен
 
 TOKEN = config["Yandex"]["TOKEN"]
-option = config["Yandex"]["option"]
-dir_mp3 = config["Yandex"]["folder"]
+option = int(input("Выберете опция загрузки:\nВариант 1 - присвоить номер треку по порядку\nВариант 2 - присвоить номер треку рандомно\nВвод номера варианта: "))
+dir_mp3 = input("Введите название папки куда скачивать файлы: ")
  
 try:
     os.mkdir(dir_mp3)
@@ -78,7 +83,7 @@ def random_dw_mp3():
         end_dw = float('{:.2f}'.format(end_dw))
         print("################################################################################################")
         print(f"Скачивание трека - {t_id}/{nums}\nПрисвоен рандомный номер - {rd_array[i]}\nВремя скачивание трека: {end_dw} Сек.")
-        print(f'{rd_array[i]}_{", ".join(art)} - {track.title}.mp3')
+        print(f'Название файлы: {rd_array[i]}_{", ".join(art)} - {track.title}.mp3')
         print("################################################################################################\n")    
         
     end_prog = time.time() - start_prog
@@ -121,7 +126,7 @@ def dw_mp3():
         end_dw = float('{:.2f}'.format(end_dw))
         print("################################################################################################")
         print(f"Скачивание трека - {t_id}/{nums}\nВремя скачивание трека: {end_dw} Сек.")
-        print(f'{t_id}_{", ".join(art)} - {track.title}.mp3')
+        print(f'Название файлы: {t_id}_{", ".join(art)} - {track.title}.mp3')
         print("################################################################################################\n")    
         
     end_prog = time.time() - start_prog
