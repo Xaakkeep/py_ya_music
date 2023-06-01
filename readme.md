@@ -6,7 +6,7 @@
 
 [**Документация библиотеки**](https://yandex-music.readthedocs.io/en/latest/index.html)
 
-**Настройка**
+## Настройка
 
 Скачать [скрипт](https://github.com/Xaakkeep/py_ya_music/archive/refs/heads/master.zip) и распаковать его в нужную вам папку
 
