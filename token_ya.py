@@ -57,7 +57,7 @@ def ya_token():
 
     if nums == 0:
         files = open("settings.ini", "w")
-        files.write(f"[Yandex]\nTOKEN = {token}")
+        files.write(f"[Yandex]\nTOKEN = {get_token()}")
         files.close()
   
         print("Файл конфигурации создан\n")
