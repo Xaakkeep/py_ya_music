@@ -145,7 +145,8 @@ def main():
         dw_mp3()
     elif option == 2:
         random_dw_mp3()
-
+    else:
+        break
 
 if __name__ == "__main__":
     main()
