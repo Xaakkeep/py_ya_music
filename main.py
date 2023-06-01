@@ -6,6 +6,8 @@ import os
 from art import tprint
 import token_ya as ya
 
+client = Client(TOKEN).init()
+
 tprint("Power by dev Grib.pw")
 print("#################################")
 print("Скрипт скачивания с Яндекс Музыки")
@@ -22,19 +24,15 @@ try:
 except KeyError:
     os.remove("settings.ini")
     ya.ya_token()
-option = int(input("Выберете опция загрузки:\nВариант 1 - присвоить номер треку по порядку\nВариант 2 - присвоить номер треку рандомно\nВвод номера варианта: "))
+
+
+
 dir_mp3 = input("Введите название папки куда скачивать файлы: ")
- 
 try:
     os.mkdir(dir_mp3)
     print(f'Папка {dir_mp3} создана!')
 except FileExistsError:
     print(f'Папа {dir_mp3} существует!')
-
-client = Client(TOKEN).init()
-
-
-    
 
 def random_dw_mp3():
     track = client.users_likes_tracks().fetch_tracks()
@@ -141,12 +139,14 @@ def dw_mp3():
     print(f"Загрузка завершена! Количество загруженных треков - {nums}\nВремя выполнения скрипта: {float('{:.2f}'.format(end_prog))} Мин!\n")
 
 def main():
+    option = int(input("Выберете опция загрузки:\nВариант 1 - присвоить номер треку по порядку\nВариант 2 - присвоить номер треку рандомно\nВвод номера варианта: "))
     if option == 1:
         dw_mp3()
     elif option == 2:
         random_dw_mp3()
     else:
-        break
+        print("Неверный выбор варианта")
+        main()
 
 if __name__ == "__main__":
     main()
