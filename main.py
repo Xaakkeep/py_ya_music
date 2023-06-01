@@ -20,7 +20,7 @@ dir_mp3 = input("Введите название папки куда скачи�
  
 try:
     os.mkdir(dir_mp3)
-    print(f'{dir_mp3} создана!')
+    print(f'Папка {dir_mp3} создана!')
 except FileExistsError:
     print(f'Папа {dir_mp3} существует!')
 
