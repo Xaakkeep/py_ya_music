@@ -44,7 +44,10 @@ def get_token():
                 token = url_fragment.split('&')[0].split('=')[1]
 
     driver.close()
-    
+    return token
+
+
+def ya_token(): 
     nums = 0
 
     for i in os.listdir():

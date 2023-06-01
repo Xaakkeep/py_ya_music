@@ -13,7 +13,7 @@ print("#################################\n")
 start_prog = time.time()
 
 print("Создание файла конфигурации\n")
-ya.get_token()
+ya.ya_token()
 
 config = cf.ConfigParser()
 config.read("settings.ini") # Файл конфигурации где лежит ваш токен
