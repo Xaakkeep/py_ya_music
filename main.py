@@ -17,8 +17,11 @@ ya.ya_token()
 
 config = cf.ConfigParser()
 config.read("settings.ini") # Файл конфигурации где лежит ваш токен
-
-TOKEN = config["Yandex"]["TOKEN"]
+try:
+    TOKEN = config["Yandex"]["TOKEN"]
+except KeyError:
+    os.remove("settings.ini")
+    ya.ya_token()
 option = int(input("Выберете опция загрузки:\nВариант 1 - присвоить номер треку по порядку\nВариант 2 - присвоить номер треку рандомно\nВвод номера варианта: "))
 dir_mp3 = input("Введите название папки куда скачивать файлы: ")
  
