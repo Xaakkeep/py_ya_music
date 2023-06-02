@@ -13,26 +13,58 @@ print("#################################\n")
 start_prog = time.time()
 
 print("Создание файла конфигурации\n")
-ya.ya_token()
-
+def ya_token(): 
+    nums = 0
+    for i in os.listdir():
+        if i == "settings.ini":
+            nums +=1
+            
+    if nums == 0:
+        src = ya.get_token()
+        files = open("settings.ini", "w")
+        files.write(f"[Yandex]\nTOKEN = {src}")
+        files.close()
+  
+        print("Файл конфигурации создан\n")
+    else:
+        print("Файл конфигурации существует\n")
+ya_token()
 config = cf.ConfigParser()
 config.read("settings.ini") # Файл конфигурации где лежит ваш токен
 try:
     TOKEN = config["Yandex"]["TOKEN"]
 except KeyError:
+    print("Файл конфигурации поврежден\n")
     os.remove("settings.ini")
-    ya.ya_token()
+    ya_token()
+    TOKEN = config["Yandex"]["TOKEN"]
+    print("Файл конфигурации пересоздан\n")
 
 client = Client(TOKEN).init()
 
-dir_mp3 = input("Введите название папки куда скачивать файлы: ")
-try:
-    os.mkdir(dir_mp3)
-    print(f'Папка {dir_mp3} создана!')
-except FileExistsError:
-    print(f'Папа {dir_mp3} существует!')
+def ya_dw():
+    dir_mp3 = input("Введите название папки куда скачивать файлы: ")
+    try:
+        os.mkdir(dir_mp3)
+        print(f'Папка {dir_mp3} создана!')
+    except FileExistsError:
+        print(f'Папа {dir_mp3} существует!')
+    
+    track = client.users_likes_tracks().fetch_tracks()
+
+    nums = 0
+
+    for num in track:
+        nums += 1
 
 def random_dw_mp3():
+    dir_mp3 = input("Введите название папки куда скачивать файлы: ")
+    try:
+        os.mkdir(dir_mp3)
+        print(f'Папка {dir_mp3} создана!')
+    except FileExistsError:
+        print(f'Папа {dir_mp3} существует!')
+    
     track = client.users_likes_tracks().fetch_tracks()
 
     nums = 0
@@ -94,6 +126,13 @@ def random_dw_mp3():
     print(f"Загрузка завершена! Количество загруженных треков - {nums}\nВремя выполнения скрипта: {float('{:.2f}'.format(end_prog))} Мин!\n")
 
 def dw_mp3():
+    dir_mp3 = input("Введите название папки куда скачивать файлы: ")
+    try:
+        os.mkdir(dir_mp3)
+        print(f'Папка {dir_mp3} создана!')
+    except FileExistsError:
+        print(f'Папа {dir_mp3} существует!')
+        
     track = client.users_likes_tracks().fetch_tracks()
 
     nums = 0
@@ -143,8 +182,7 @@ def main():
     elif option == 2:
         random_dw_mp3()
     else:
-        print("Неверный выбор варианта")
-        main()
+        pass
 
 if __name__ == "__main__":
     main()

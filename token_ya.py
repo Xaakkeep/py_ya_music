@@ -43,23 +43,13 @@ def get_token():
             if url_fragment:
                 token = url_fragment.split('&')[0].split('=')[1]
 
-    driver.close()
+    try:
+        driver.close()
+    except:
+        pass
+    
     return token
 
+# print(get_token())
 
-def ya_token(): 
-    nums = 0
 
-    for i in os.listdir():
-        if i == "settings.ini":
-            nums +=1
-            break
-
-    if nums == 0:
-        files = open("settings.ini", "w")
-        files.write(f"[Yandex]\nTOKEN = {get_token()}")
-        files.close()
-  
-        print("Файл конфигурации создан\n")
-    else:
-        print("Файл конфигурации существует\n")
