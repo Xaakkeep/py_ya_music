@@ -6,8 +6,6 @@ import os
 from art import tprint
 import token_ya as ya
 
-client = Client(TOKEN).init()
-
 tprint("Power by dev Grib.pw")
 print("#################################")
 print("Скрипт скачивания с Яндекс Музыки")
@@ -25,7 +23,7 @@ except KeyError:
     os.remove("settings.ini")
     ya.ya_token()
 
-
+client = Client(TOKEN).init()
 
 dir_mp3 = input("Введите название папки куда скачивать файлы: ")
 try:
