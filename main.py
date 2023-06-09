@@ -112,8 +112,13 @@ def random_dw_mp3():
                     j = "_"
                 artists += j
             art.append(artists)
+        track_title = ""
+        for t in track.title:
+            if t == "?":
+                t = "_"
+            track_title += t
             
-        track.download(f'{dir_mp3}/{rd_array[i]}_{", ".join(art)} - {track.title}.mp3')
+        track.download(f"{dir_mp3}/{rd_array[i]}_{', '.join(art)} - {track_title}.mp3")
         end_dw = time.time() - start_dw
         end_dw = float('{:.2f}'.format(end_dw))
         print("################################################################################################")
@@ -162,8 +167,13 @@ def dw_mp3():
                     j = "_"
                 artists += j
             art.append(artists)
+        track_title = ""
+        for t in track.title:
+            if t == "?":
+                t = "_"
+            track_title += t
             
-        track.download(f'{dir_mp3}/{t_id}_{", ".join(art)} - {track.title}.mp3')
+        track.download(f'{dir_mp3}/{t_id}_{", ".join(art)} - {track_title}.mp3')
         end_dw = time.time() - start_dw
         end_dw = float('{:.2f}'.format(end_dw))
         print("################################################################################################")
@@ -181,6 +191,16 @@ def main():
         dw_mp3()
     elif option == 2:
         random_dw_mp3()
+    elif option == 3:
+        title_track = ""
+        track = client.users_likes_tracks()[0].fetch_track()
+        for i in track.title:
+            if i == "?":
+                i = '_'
+            title_track += i
+        print(title_track)
+            
+        track.download(f"{title_track}.mp3")
     else:
         pass
 
