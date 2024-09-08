@@ -2,11 +2,15 @@
 
 Скрипт качает с сервиса [Yandex Music](https://music.yandex.ru/) из плейлиста "Мне нравиться" все песни.
 
-Скрипт написан на библиотеке [yandex-music 2.1.1](https://pypi.org/project/yandex-music/) Автор [Ilya (Marshal)](ilya@marshal.dev)
+Скрипт написан на библиотеке [yandex-music 2.2.0](https://pypi.org/project/yandex-music/) Автор [Ilya (Marshal)](ilya@marshal.dev)
+
+Получение токена от автора [NicWeiss](https://github.com/NicWeiss)
 
 [**Документация библиотеки**](https://yandex-music.readthedocs.io/en/latest/index.html)
 
 ## Настройка
+
+Для правильной работы скрипта должен быть установлен Chrome без него не заработает!
 
 Скачать [скрипт](https://github.com/Xaakkeep/py_ya_music/archive/refs/heads/master.zip) и распаковать его в нужную вам папку
 

@@ -3,6 +3,7 @@ import random as rd
 import time
 import configparser as cf
 import os
+import sys
 from art import tprint
 import token_ya as ya
 
@@ -21,9 +22,13 @@ def ya_token():
             
     if nums == 0:
         src = ya.get_token()
-        files = open("settings.ini", "w")
-        files.write(f"[Yandex]\nTOKEN = {src}")
-        files.close()
+        if src == 'None':
+            print('Токен не получен! Перезапустите скрипт\n')
+            sys.exit(1)
+        else:    
+            files = open("settings.ini", "w")
+            files.write(f"[Yandex]\nTOKEN = {src}")
+            files.close()
   
         print("Файл конфигурации создан\n")
     else:
@@ -33,6 +38,10 @@ config = cf.ConfigParser()
 config.read("settings.ini") # Файл конфигурации где лежит ваш токен
 try:
     TOKEN = config["Yandex"]["TOKEN"]
+    if TOKEN == 'None':
+        print('Токе поврежден\n')
+        os.remove("settings.ini")
+        ya_token()
 except KeyError:
     print("Файл конфигурации поврежден\n")
     os.remove("settings.ini")
@@ -40,7 +49,12 @@ except KeyError:
     TOKEN = config["Yandex"]["TOKEN"]
     print("Файл конфигурации пересоздан\n")
 
-client = Client(TOKEN).init()
+try:
+    client = Client(TOKEN).init()
+except:
+    print("Токен Поврежден")
+    os.remove("settings.ini")
+    ya_token()
 
 def ya_dw():
     dir_mp3 = input("Введите название папки куда скачивать файлы: ")
@@ -186,19 +200,13 @@ def dw_mp3():
     print(f"Загрузка завершена! Количество загруженных треков - {nums}\nВремя выполнения скрипта: {float('{:.2f}'.format(end_prog))} Мин!\n")
 
 def main():
-    option = int(input("Выберете опция загрузки:\nВариант 1 - присвоить номер треку по порядку\nВариант 2 - присвоить номер треку рандомно\nВвод номера варианта: "))
+    option = int(input("Выберете опция загрузки:\nВариант 1 - присвоить номер треку по порядку\nВариант 2 - присвоить номер треку рандомно\nВариант 3 - Выход\nВвод номера варианта: "))
     if option == 1:
         dw_mp3()
     elif option == 2:
         random_dw_mp3()
     elif option == 3:
-        title_track = ""
-        track = client.users_likes_tracks()[0].fetch_track()
-        for i in track.title:
-            if i == "?":
-                i = '_'
-            title_track += i
-        print(title_track)
+        sys.exit(1)
             
         track.download(f"{title_track}.mp3")
     else:

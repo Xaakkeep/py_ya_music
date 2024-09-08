@@ -1,11 +1,10 @@
 import json
 from time import sleep
-import os
 
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.remote.command import Command
-from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 def is_active(driver):
@@ -21,9 +20,7 @@ def get_token():
     capabilities = DesiredCapabilities.CHROME
     capabilities["loggingPrefs"] = {"performance": "ALL"}
     capabilities['goog:loggingPrefs'] = {'performance': 'ALL'}
-    s = Service(executable_path='chromedriver')
-    driver = webdriver.Chrome(service=s)
-    
+    driver = webdriver.Chrome(desired_capabilities=capabilities, executable_path=ChromeDriverManager().install())
     driver.get(
         "https://oauth.yandex.ru/authorize?response_type=token&client_id=23cabbbdc6cd418abb4b39c32c41195d")
 
@@ -47,9 +44,8 @@ def get_token():
         driver.close()
     except:
         pass
-    
-    return token
+
+    return str(token)
+
 
 # print(get_token())
-
-
