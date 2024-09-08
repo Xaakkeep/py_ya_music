@@ -467,5 +467,5 @@ Footer navigation
 mp3
 mp3_rd
 test
-settings.ini
+*.ini
 .gitignore
