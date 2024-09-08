@@ -207,8 +207,6 @@ def main():
         random_dw_mp3()
     elif option == 3:
         sys.exit(1)
-            
-        track.download(f"{title_track}.mp3")
     else:
         pass
 
