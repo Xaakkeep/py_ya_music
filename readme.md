@@ -38,3 +38,5 @@ pip install -r requirements.txt
 ```cmd
 python main.py
 ```
+
+Для Windows можно запустить скрипт установки для PowerShell setup.ps1, а потом run.ps1 для запуска самого скрипта

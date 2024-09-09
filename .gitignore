@@ -468,3 +468,5 @@ mp3
 mp3_rd
 test
 *.ini
+*.psd1
+out
